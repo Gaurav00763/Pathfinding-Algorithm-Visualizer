@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pathfinding Visualizer — BFS / DFS / A* / Hill Climbing</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Main Navigation Header -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo-icon"></div>
+        <div>
+          <h1>Pathfinding Visualizer</h1>
+          <p class="subtitle">Algorithm Strategy Engine</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Grid Simulation Area -->
+      <section class="board-panel">
+        <div id="grid" class="grid"></div>
+        
+        <div class="controls-inline">
+          <button id="clearBtn" class="btn outline">Clear All</button>
+          <button id="clearPathBtn" class="btn outline">Clear Path</button>
+          <button id="randomWallsBtn" class="btn outline">Generate Walls</button>
+          <div style="flex:1"></div>
+          <div class="range-group">
+            <span class="label-text">Grid Density</span>
+            <input id="rows" type="range" min="10" max="50" value="25">
+          </div>
+        </div>
+      </section>
+
+      <!-- Strategy & Settings Sidebar -->
+      <aside class="sidebar">
+        <div class="card">
+          <div class="card-header">
+            <h2>Configuration</h2>
+          </div>
+          
+          <div class="control-group">
+            <label>Pathfinding Algorithm</label>
+            <select id="algoSelect">
+              <option value="bfs">Breadth First Search (BFS)</option>
+              <option value="dfs">Depth First Search (DFS)</option>
+              <option value="astar">A* Search (Heuristic)</option>
+              <option value="hill">Hill Climbing (Greedy)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label>Interaction Mode</label>
+            <div class="btn-row">
+              <button id="modeStart" class="btn toggle active">Start</button>
+              <button id="modeEnd" class="btn toggle">End</button>
+              <button id="modeWall" class="btn toggle">Wall</button>
+              <button id="modeErase" class="btn toggle">Erase</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>Animation Speed (Delay: <span id="speedVal">60</span>ms)</label>
+            <input id="speed" type="range" min="0" max="200" value="60">
+          </div>
+
+          <div class="action-row">
+            <button id="runBtn" class="btn primary">Start Visualization</button>
+            <button id="stopBtn" class="btn secondary">Stop</button>
+          </div>
+
+          <!-- Real-time Performance Metrics -->
+          <div class="stats-panel">
+            <div class="stat-item">
+              <span class="stat-label">Explored</span>
+              <span class="stat-value" id="exploredCount">0</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-label">Path Steps</span>
+              <span class="stat-value" id="pathLen">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Legend Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Key</h2>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><span class="legend-box start-box"></span> Start Point</div>
+            <div class="legend-item"><span class="legend-box end-box"></span> Target Point</div>
+            <div class="legend-item"><span class="legend-box wall-box"></span> Obstacle</div>
+            <div class="legend-item"><span class="legend-box frontier-box"></span> Frontier</div>
+            <div class="legend-item"><span class="legend-box visited-box"></span> Explored</div>
+            <div class="legend-item"><span class="legend-box path-box"></span> Shortest Path</div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Footer Information -->
+    <footer class="footer">
+      <p>Strategy Engine v2.0 • Data-driven simulation</p>
+    </footer>
+  </div>
+
+  <!-- Core Logic Engine -->
+  <script src="script.js"></script>
+</body>
+</html>
